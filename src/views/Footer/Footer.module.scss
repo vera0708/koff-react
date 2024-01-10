@@ -1,0 +1,29 @@
+.container {
+    display: grid;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    grid-template-areas:
+        'logo'
+        'contacts'
+        'developer';
+
+    @media (min-width: 820px) {
+        grid-template-areas:
+            'logo contacts'
+            'developer developer';
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .logo {
+        grid-area: logo;
+    }
+
+    .contacts {
+        grid-area: contacts;
+    }
+
+    .developer {
+        grid-area: developer;
+    }
+}

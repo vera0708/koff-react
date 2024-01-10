@@ -1,3 +1,4 @@
+import { Footer } from "./Footer/Footer"
 import { Header } from "./Header/Header"
 
 const App = () => (
@@ -6,7 +7,7 @@ const App = () => (
     <main>
       <p>Текст</p>
     </main>
-    <footer>Текст2 ещё</footer>
+    <Footer />
   </>
 )
 

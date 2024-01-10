@@ -1,9 +1,6 @@
-// .header {}
-
 .container {
     display: grid;
-    gap: 16px;
-    align-items: center;
+    gap: 24px;
     justify-content: space-between;
     grid-template-areas:
         'logo navigation'
