@@ -1,3 +1,9 @@
+.header {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #EEEFF2;
+}
+
 .container {
     display: grid;
     gap: 24px;
@@ -7,20 +13,32 @@
         'search search';
 
     @media (min-width: 820px) {
-        grid-template-areas: 'logo navigation search';
+        grid-template-areas: 'logo search navigation ';
         grid-template-columns: 94px 1fr auto;
         align-items: center;
     }
 
     .logo {
         grid-area: logo;
+        width: 94px;
     }
 
     .search {
         grid-area: search;
+        width: 100%;
+
+        @media (min-width: 820px) {
+            max-width: 408px;
+            justify-self: center;
+        }
+
+        @media (min-width: 1120px) {
+            max-width: 514px;
+        }
     }
 
     .navigation {
         grid-area: navigation;
+        justify-self: end;
     }
 }
