@@ -4,12 +4,22 @@ import s from './Goods.module.scss';
 
 export const Goods = () => (
     <section className={s.goods} >
-        <Container>
+        <Container className={s.container}>
             <h2 className={`${s.title} visually-hidden`}>Список товаров</h2>
             <ul className={s.list} >
-                <li>
-                    <CardItem />
-                </li>
+                {/* {data.map((item, i) => (
+                    <li key={i}>
+                        <a className={s.link}
+                            href={`/category?slug=${item}`}>
+                            {item}
+                        </a>
+                    </li>
+                ))} */}
+                {/* {data.map((item, i) => (
+                    <li key={i}>
+                        <CardItem />
+                    </li>
+                ))} */}
                 <li>
                     <CardItem />
                 </li>
