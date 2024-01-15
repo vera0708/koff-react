@@ -1,14 +1,14 @@
 import s from './CardItem.module.scss';
 import photoGood from './photo.png';
 
-export const CardItem = () => (
+export const CardItem = (product) => (
     <article className={s.card}>
-        <a className={s.link} href='#'>
-            <img className={s.img} src={photoGood} alt="Изображение товара" />
+        <a className={s.link} href={`product/${product.id}`}>
+            <img className={s.img} src={photoGood} alt={`${product.name}`} />
         </a>
         <div className={s.info}>
             <h3 className={s.title}>
-                <a className={s.link} href='#'>Кресло с подлокотниками</a>
+                <a className={s.link} href='#'>{`${product.name}`}</a>
             </h3>
             <p className={s.price}>5&nbsp;000&nbsp;₽</p>
         </div>

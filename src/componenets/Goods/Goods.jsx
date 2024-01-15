@@ -2,7 +2,7 @@ import { Container } from '../../views/Container/Container';
 import { CardItem } from '../CardItem/CardItem';
 import s from './Goods.module.scss';
 
-export const Goods = () => (
+export const Goods = ({ data }) => (
     <section className={s.goods} >
         <Container className={s.container}>
             <h2 className={`${s.title} visually-hidden`}>Список товаров</h2>
@@ -15,20 +15,11 @@ export const Goods = () => (
                         </a>
                     </li>
                 ))} */}
-                {/* {data.map((item, i) => (
+                {data.map((item, i) => (
                     <li key={i}>
-                        <CardItem />
+                        <CardItem product={item} />
                     </li>
-                ))} */}
-                <li>
-                    <CardItem />
-                </li>
-                <li>
-                    <CardItem />
-                </li>
-                <li>
-                    <CardItem />
-                </li>
+                ))}
             </ul>
         </Container>
     </section>
