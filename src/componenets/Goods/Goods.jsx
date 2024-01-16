@@ -7,17 +7,9 @@ export const Goods = ({ data }) => (
         <Container className={s.container}>
             <h2 className={`${s.title} visually-hidden`}>Список товаров</h2>
             <ul className={s.list} >
-                {/* {data.map((item, i) => (
-                    <li key={i}>
-                        <a className={s.link}
-                            href={`/category?slug=${item}`}>
-                            {item}
-                        </a>
-                    </li>
-                ))} */}
-                {data.map((item, i) => (
-                    <li key={i}>
-                        <CardItem product={item} />
+                {data.map((item) => (
+                    <li key={item.id}>
+                        <CardItem {...item} />
                     </li>
                 ))}
             </ul>

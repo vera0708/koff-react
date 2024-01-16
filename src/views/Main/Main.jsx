@@ -4,6 +4,7 @@ import { Goods } from "../../componenets/Goods/Goods";
 import { fetchCategories } from '../../store/categories/categories.slice';
 import { Catalog } from '../../componenets/Catalog/Catalog';
 import { fetchProducts } from '../../store/products/products.slice';
+import s from './Main.module.scss';
 
 export const Main = () => {
     const dispatch = useDispatch();
@@ -21,19 +22,15 @@ export const Main = () => {
 
     useEffect(() => {
         dispatch(fetchCategories());
-    }, [dispatch]);
-
-    useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
-    if (loadingCategories) return <div>Загрузка каталога...</div>
+    if (loadingCategories || loadingProducts) return <div>Загрузка данных ...</div>
     if (errorCategories) return <div>Ошибка: {errorCategories}</div>
-    if (loadingProducts) return <div>Загрузка товаров...</div>
     if (errorProducts) return <div>Ошибка: {errorProducts}</div>
 
     return (
-        <main>
+        <main className={s.main}>
             <Catalog data={dataCategories} />
             <Goods data={dataProducts} />
         </main>

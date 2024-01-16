@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API_URL } from "../../const";
 
 export const fetchProducts = createAsyncThunk(
     'products/fetchProducts',
@@ -6,7 +7,8 @@ export const fetchProducts = createAsyncThunk(
         const state = thunkAPI.getState();
         const token = state.auth.accessToken;
 
-        const response = await fetch('https://koff-api.vercel.app/api/products', {
+        const response = await fetch(
+            `${API_URL}api/products`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -21,7 +23,7 @@ export const fetchProducts = createAsyncThunk(
 )
 
 const initialState = {
-    data: [{}],
+    data: [],
     loading: false,
     error: null,
 }
