@@ -1,54 +1,215 @@
 .card {
     display: block;
-}
-
-.link {
-    display: block;
-    margin-bottom: 12px;
+    padding-top: 24px;
 
     @media (min-width: 580px) {
-        margin-bottom: 16px;
+        margin-bottom: 28px;
     }
+
+    @media (min-width: 820px) {
+        margin-bottom: 40px;
+    }
+}
+
+.container {
+    max-width: 1440px;
+    padding: 0 16px;
+    margin: 0 auto;
+
+    @media (min-width: 580px) {
+        padding: 0 29px;
+    }
+
+    @media (min-width: 820px) {
+        padding: 0 43px;
+        display: grid;
+        grid-template-columns: 66% 1fr;
+        gap: 40px 16px;
+    }
+
+    @media (min-width: 1120px) {
+        padding: 0 92px;
+    }
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+
+    @media (min-width: 580px) {
+        font-size: 32px;
+    }
+
+    @media (min-width: 820px) {
+        grid-column: 1/-1;
+        margin-bottom: 0;
+    }
+}
+
+.picture {
+    margin-bottom: 32px;
+
+    @media (min-width: 580px) {
+        margin-bottom: 40px;
+    }
+
+    @media (min-width: 820px) {
+        grid-column: 1/2;
+        margin-bottom: 0;
+    }
+}
+
+.sliderMain {
+    position: relative;
+    width: 100%;
+    height: 74vw;
+    max-height: 688px;
+
+    @media (min-width: 580px) {
+        margin-bottom: 14px;
+        height: 74vw;
+    }
+
+    @media (min-width: 820px) {
+        height: 60vw;
+    }
+
+    @media (min-width: 1120px) {
+        height: 48vw;
+    }
+
+    /*          &__slide {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
+              border-radius: 16px;
+          }
+              &__image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+          }    */
+}
+
+.arrow {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+
+    &_next {
+        right: 16px;
+
+        @media (min-width: 580px) {
+            right: 24px;
+        }
+    }
+
+    &_prev {
+        left: 16px;
+
+        @media (min-width: 580px) {
+            left: 24px;
+        }
+    }
+}
+
+.sliderThumbnails {
+    display: none !important;
+
+    @media (min-width: 580px) {
+        display: block !important;
+        height: 22vw;
+        max-height: 138px;
+    }
+
+    @media (min-width: 820px) {
+        height: 12vw;
+        max-height: 120px;
+    }
+
+    @media (min-width: 1120px) {
+        max-height: 162px;
+    }
+}
+
+.thumbnailsSlide {
+    border-radius: 16px;
+    overflow: hidden;
+    /*&__thumbnails-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    */
 }
 
 .info {
     flex-grow: 1;
 
-    @media (min-width: 580px) {
-        display: flex;
-        gap: 5px;
-        margin-bottom: 20px;
-    }
-}
-
-.title {
-    margin-bottom: 4px;
-    font-size: 12px;
-    font-weight: 400;
-
-    @media (min-width: 580px) {
-        padding-top: 3px;
-        font-size: 16px;
-        margin-bottom: 0;
+    @media (min-width: 820px) {
+        grid-column: 2/3;
     }
 }
 
 .price {
     margin-bottom: 12px;
-    font-size: 16px;
+    font-size: 20px;
+}
 
-    @media (min-width: 580px) {
-        font-size: 20px;
-        margin-bottom: 0;
-    }
+.article {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 32px;
+    background-color: #eeeff2;
+    margin-bottom: 24px;
+}
+
+.characteristics_title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.table__row {
+    border-bottom: 1px solid #eeeff2;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.table__field {
+    padding: 8px 0;
+    color: #969eae;
+}
+
+.table__value {
+    padding: 8px 0;
+    text-align: right;
+    color: #1c1c1c;
+}
+
+.btns {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .btn {
-    width: 100%;
+    flex-grow: 1;
     padding: 12px 24px;
-    color: #780096;
+    color: #fff;
+    background-color: #780096;
     border-radius: 32px;
-    border: 1px solid #780096;
+    border: 1px solid transparent;
 
     &:hover {
         color: #ffffff;
@@ -60,5 +221,35 @@
         color: #c0f;
         border-color: #c0f;
         background-color: transparent;
+    }
+
+    &:focus-visible {
+        border-color: #c0f;
+    }
+}
+
+.like {
+    width: 16px;
+    height: 16px;
+
+    svg {
+        fill: #fff;
+    }
+
+    &:hover,
+    &_active {
+        color: #780096;
+
+        svg {
+            fill: #780096;
+        }
+    }
+
+    &:active {
+        color: #CC00FF;
+
+        svg {
+            fill: #CC00FF;
+        }
     }
 }
