@@ -29,7 +29,7 @@ export const fetchProduct = createAsyncThunk(
 )
 
 const initialState = {
-    data: [],
+    data: null,
     loading: false,
     error: null,
 }

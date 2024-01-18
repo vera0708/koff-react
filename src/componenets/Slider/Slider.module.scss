@@ -60,7 +60,7 @@
   transform: translateY(-50%);
   width: 32px;
 
-  &_prev {
+  &_next {
     right: 16px;
 
     @media (min-width: 580px) {
@@ -68,7 +68,7 @@
     }
   }
 
-  &_next {
+  &_prev {
     left: 16px;
 
     @media (min-width: 580px) {

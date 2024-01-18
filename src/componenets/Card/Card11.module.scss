@@ -1,0 +1,168 @@
+.card {
+    display: block;
+    padding-top: 24px;
+
+    @media (min-width: 580px) {
+        margin-bottom: 28px;
+    }
+
+    @media (min-width: 820px) {
+        margin-bottom: 40px;
+    }
+}
+
+.container {
+    max-width: 1440px;
+    padding: 0 16px;
+    margin: 0 auto;
+
+    @media (min-width: 580px) {
+        padding: 0 29px;
+    }
+
+    @media (min-width: 820px) {
+        padding: 0 43px;
+        display: grid;
+        grid-template-columns: 66% 1fr;
+        gap: 40px 16px;
+    }
+
+    @media (min-width: 1120px) {
+        padding: 0 92px;
+    }
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+
+    @media (min-width: 580px) {
+        font-size: 32px;
+    }
+
+    @media (min-width: 820px) {
+        grid-column: 1/-1;
+        margin-bottom: 0;
+    }
+}
+
+.picture {
+    margin-bottom: 32px;
+
+    @media (min-width: 580px) {
+        margin-bottom: 40px;
+    }
+
+    @media (min-width: 820px) {
+        grid-column: 1/2;
+        margin-bottom: 0;
+    }
+}
+
+.info {
+    flex-grow: 1;
+
+    @media (min-width: 820px) {
+        grid-column: 2/3;
+    }
+}
+
+.price {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.article {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 32px;
+    background-color: #eeeff2;
+    margin-bottom: 24px;
+}
+
+.characteristics_title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.table__row {
+    border-bottom: 1px solid #eeeff2;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.table__field {
+    padding: 8px 0;
+    color: #969eae;
+}
+
+.table__value {
+    padding: 8px 0;
+    text-align: right;
+    color: #1c1c1c;
+}
+
+.btns {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn {
+    flex-grow: 1;
+    padding: 12px 24px;
+    color: #fff;
+    background-color: #780096;
+    border-radius: 32px;
+    border: 1px solid transparent;
+
+    &:hover {
+        color: #ffffff;
+        border-color: #9200b7;
+        background-color: #9200b7;
+    }
+
+    &:active {
+        color: #c0f;
+        border-color: #c0f;
+        background-color: transparent;
+    }
+
+    &:focus-visible {
+        border-color: #c0f;
+    }
+}
+
+.like {
+    width: 16px;
+    height: 16px;
+
+    svg {
+        fill: #fff;
+    }
+
+    &:hover,
+    &_active {
+        color: #780096;
+
+        svg {
+            fill: #780096;
+        }
+    }
+
+    &:active {
+        color: #CC00FF;
+
+        svg {
+            fill: #CC00FF;
+        }
+    }
+}

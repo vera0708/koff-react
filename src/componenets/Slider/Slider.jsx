@@ -3,32 +3,27 @@ import { Thumbs } from "swiper/modules";
 import { useState } from "react";
 import 'swiper/css';
 import s from './Slider.module.scss';
+import { API_URL } from "../../const";
 
-export const Slider = (data) => {
+export const Slider = ({ data }) => {
     const [mainSwiper, setMainSwiper] = useState(null);
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     return (
         <div className={s.picture}>
             <div className={s.sliderMain}>
-                {data ? (
+                {data?.images.length ? (
                     <>
                         <Swiper
                             modules={[Thumbs]}
                             thumbs={{ swiper: thumbsSwiper }}
                             onSwiper={setMainSwiper}
-                            spaceBetween={10}>
-                            <SwiperSlide>
-                                <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                            </SwiperSlide>
+                            spaceBetween={10}
+                        >
+                            {data.images.map((item, i) => (
+                                <SwiperSlide key={i} className={s.slide}>
+                                    <img className={s.image} src={`${API_URL}${item}`} alt={data.name} />
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                         <button onClick={() =>
                             mainSwiper.slidePrev()}
@@ -60,7 +55,7 @@ export const Slider = (data) => {
                 ) : <>Загрузка карточки товара ...</>}
             </div>
             <div className={s.sliderThumbnails}>
-                {data ? (
+                {data?.images.length ? (
                     <Swiper
                         modules={[Thumbs]}
                         onSwiper={setThumbsSwiper}
@@ -68,18 +63,11 @@ export const Slider = (data) => {
                         spaceBetween={14}
                         slidesPerView={4}
                     >
-                        <SwiperSlide className={s.thumbnailsSlide}>
-                            <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                        </SwiperSlide>
-                        <SwiperSlide className={s.thumbnailsSlide}>
-                            <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                        </SwiperSlide>
-                        <SwiperSlide className={s.thumbnailsSlide}>
-                            <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                        </SwiperSlide>
-                        <SwiperSlide className={s.thumbnailsSlide}>
-                            <img src='/img/photo.jpg' alt='Кресло с подлокотниками' />
-                        </SwiperSlide>
+                        {data.images.map((item, i) => (
+                            <SwiperSlide key={i} className={s.slideThumbnail}>
+                                <img className={s.imgThumbnail} src={`${API_URL}${item}`} alt={data.name} />
+                            </SwiperSlide>
+                        ))}
                     </Swiper>
                 ) : <>Загрузка карточки товара ...</>}
             </div>
