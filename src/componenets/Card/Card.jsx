@@ -18,21 +18,16 @@ export const Card = () => {
 
     const {
         data,
-        loading: loadingProduct,
-        error: errorProduct,
     } = useSelector(state => state.product);
 
     useEffect(() => {
         dispatch(fetchProduct(productId));
     }, [dispatch, productId]);
 
-    if (loadingProduct) return <div>Загрузка товаров ...</div>
-    if (errorProduct) return <div>Ошибка: {errorProduct}</div>
-
     return (
         <section className={s.card}>
             <Container className={s.container}>
-                <h2 className={s.title}>{data.title}</h2>
+                <h2 className={s.title}>Кресло с подлoкотниками{data.title}</h2>
                 <div className={s.picture}>
                     <div className={s.sliderMain}>
                         <Swiper

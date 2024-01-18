@@ -3,7 +3,7 @@ import { API_URL } from "../../const";
 
 export const fetchProduct = createAsyncThunk(
     'product/fetchProduct',
-    async (_, thunkAPI, productId) => {
+    async (productId, thunkAPI) => {
         const state = thunkAPI.getState();
         const token = state.auth.accessToken;
 
@@ -15,6 +15,12 @@ export const fetchProduct = createAsyncThunk(
         })
 
         if (!response.ok) {
+            if (response.status === 401) {
+                return thunkAPI.rejectWithValue({
+                    status: response.status,
+                    error: 'Не удалось получить карточку товара'
+                })
+            }
             throw new Error('Не удалось получить карточку товара');
         }
 
