@@ -3,12 +3,12 @@ import { API_URL } from "../../const";
 
 export const fetchProduct = createAsyncThunk(
     'product/fetchProduct',
-    async (_, thunkAPI) => {
+    async (_, thunkAPI, productId) => {
         const state = thunkAPI.getState();
         const token = state.auth.accessToken;
 
         const response = await fetch(
-            `${API_URL}api/product/id`, {
+            `${API_URL}api/products/${productId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

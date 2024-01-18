@@ -3,8 +3,10 @@ import { Thumbs } from 'swiper/modules';
 import { Container } from '../../views/Container/Container';
 import 'swiper/css';
 import s from './Card.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProduct } from '../../store/product/product.slice';
 
 
 export const Card = () => {
@@ -12,11 +14,25 @@ export const Card = () => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const { productId } = useParams();
     console.log(productId);
+    const dispatch = useDispatch();
+
+    const {
+        data,
+        loading: loadingProduct,
+        error: errorProduct,
+    } = useSelector(state => state.product);
+
+    useEffect(() => {
+        dispatch(fetchProduct(productId));
+    }, [dispatch, productId]);
+
+    if (loadingProduct) return <div>Загрузка товаров ...</div>
+    if (errorProduct) return <div>Ошибка: {errorProduct}</div>
 
     return (
         <section className={s.card}>
             <Container className={s.container}>
-                <h2 className={s.title}>Кресло с подлокотниками</h2>
+                <h2 className={s.title}>{data.title}</h2>
                 <div className={s.picture}>
                     <div className={s.sliderMain}>
                         <Swiper
