@@ -21,6 +21,10 @@
     &:hover {
         border: 1px solid #DFE3EB;
     }
+
+    &::-webkit-search-cancel-button {
+        display: none;
+    }
 }
 
 .button {
