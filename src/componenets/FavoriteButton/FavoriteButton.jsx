@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorute, removeFromFavorite } from "../../store/favorite/favorite";
+import { addToFavorite, removeFromFavorite } from "../../store/favorite/favorite";
 
 export const FavoriteButton = ({ className, id }) => {
     const [hover, setHover] = useState(false);
@@ -13,7 +13,7 @@ export const FavoriteButton = ({ className, id }) => {
         if (isFavorite) {
             dispatch(removeFromFavorite(id));
         } else {
-            dispatch(addToFavorute(id));
+            dispatch(addToFavorite(id));
         }
     }
 
