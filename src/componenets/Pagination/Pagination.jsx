@@ -1,15 +1,43 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import s from './Pagination.module.scss';
 
 export const Pagination = ({ pagination }) => {
-    console.log('pagination: ', pagination)
+    console.log('pagination: ', pagination);
+    const { currentPage, totalProducts, limit, totalPages } = pagination;
+    const location = useLocation();
+    const [searchParam] = useSearchParams();
+
+    const currentPageNum = parseInt(searchParam.get('page')) || currentPage
+
+    const createPageUrl = (pageNumber) => {
+        const newSearchParams = new URLSearchParams(searchParam);
+        newSearchParams.set('page', pageNumber.toString());
+        return `${location.pathname}?${newSearchParams.toString()}`
+    }
+    const prevPageNumber = currentPageNum - 1;
+    const nextPageNumber = currentPageNum + 1;
+
+    const prevPageUrl = prevPageNumber > 0 ? createPageUrl(prevPageNumber) : '';
+    const nextPageUrl = nextPageNumber <= totalPages ? createPageUrl(nextPageNumber) : '';
+
+    const width = currentPage * limit;
+    const paginationCurrent = totalProducts === limit
+        ? totalProducts : width < totalProducts
+            ? width : (width - limit + (totalProducts % limit))
+
     return (
         <div className={s.pagination}>
             <div className={s.bar}>
-                <div className={s.barWidth}></div>
+                <div
+                    className={s.barWidth}
+                    style={{
+                        width: `calc(${width < totalProducts ? width : totalProducts
+                            } / ${totalProducts} * 100%)`,
+                    }}></div>
             </div>
             <div className={s.arrays}>
-                <Link className={''} to={''}>
+                <Link className={prevPageUrl
+                    ? '' : s.disabled} to={prevPageUrl}>
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="8" height="14"
                         viewBox="0 0 8 14"
@@ -19,11 +47,12 @@ export const Pagination = ({ pagination }) => {
                     </svg>
                 </Link>
                 <p className={s.info}>
-                    <span>12</span>
+                    <span>{paginationCurrent}</span>
                     из
-                    <span>31</span>
+                    <span>{totalProducts}</span>
                 </p>
-                <Link className={''} to={''}>
+                <Link className={nextPageUrl
+                    ? '' : s.disabled} to={nextPageUrl}>
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="16"

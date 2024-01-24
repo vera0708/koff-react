@@ -8,7 +8,7 @@ export const Developer = () => (
                 href='https://t.me/Mrshmallowww'
                 target='_blank'
                 rel='noreferrer'>
-                Anastasiaa Ilina
+                Anastasia Ilina
             </a>
         </li>
         <li className={s.item}>

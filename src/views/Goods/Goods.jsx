@@ -14,7 +14,7 @@ export const Goods = () => {
         loading: loadingProducts,
         error: errorProducts,
         pagination,
-    } = useSelector(state => state.products);
+    } = useSelector((state) => state.products);
     const [searchParam] = useSearchParams();
     const { favoriteList } = useSelector((state) => state.favorite);
     const { pathname } = useLocation();
@@ -24,13 +24,13 @@ export const Goods = () => {
     const page = searchParam.get('page');
 
     useEffect(() => {
-        if (!pathname !== '/favorite') {
+        if (pathname !== '/favorite') {
             dispatch(fetchProducts({ category, q, page }));
         }
     }, [dispatch, category, q, pathname, page]);
 
     useEffect(() => {
-        if (!pathname === '/favorite') {
+        if (pathname === '/favorite') {
             dispatch(fetchProducts({ list: favoriteList.join(','), page }));
         }
     }, [dispatch, favoriteList, pathname, page]);
@@ -52,6 +52,7 @@ export const Goods = () => {
                                 </li>
                             ))}
                         </ul>
+                        {/* <Pagination /> */}
                         {pagination ? <Pagination pagination={pagination} /> : 'Здесь должна быть пагинация'}
                     </>
                 ) : (
