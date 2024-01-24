@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import { fetchAccessToken } from '../store/auth/auth.slice';
 import { Header } from "./Header/Header";
 import { Footer } from "./Footer/Footer";
-import { Cart } from '../componenets/Cart/Cart';
 import { Card } from '../componenets/Card/Card';
 import { Catalog } from './Catalog/Catalog';
 import { Goods } from './Goods/Goods';
+import { Cart } from './Cart/Cart';
 
 const router = createBrowserRouter([
   {
