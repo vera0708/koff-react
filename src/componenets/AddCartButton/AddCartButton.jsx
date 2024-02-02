@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCart } from "../../store/cart/cart.slice";
+import { addProductToCart, removeProductFromCart } from "../../store/cart/cart.slice";
 
 export const AddCartButton = ({ className, id }) => {
     const dispatch = useDispatch();
@@ -13,6 +13,8 @@ export const AddCartButton = ({ className, id }) => {
                 productId: id,
                 quantity: 1,
             }))
+        } else {
+            dispatch(removeProductFromCart(id))
         }
     }
 
@@ -20,7 +22,7 @@ export const AddCartButton = ({ className, id }) => {
         <button className={className}
             onClick={handleButton}
         > {
-                isCart ? 'Убрать ' : 'В корзину'
+                isCart ? 'Из корзины' : 'В корзину'
             }</button>
     )
 }

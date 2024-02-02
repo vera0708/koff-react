@@ -50,6 +50,56 @@ export const addProductToCart = createAsyncThunk(
     },
 );
 
+export const updateProductToCart = createAsyncThunk(
+    'cart/updateProductToCart',
+    async (productData, { getState, rejectWithValue }) => {
+        const state = getState();
+        const token = state.auth.accessToken;
+
+        try {
+            const response = await fetch(`${API_URL}api/cart/products`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(productData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Не удалось обновить этот товар в корзине');
+            }
+            return await response.json();
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
+
+export const removeProductFromCart = createAsyncThunk(
+    'cart/removeProductFromCart',
+    async (productId, { getState, rejectWithValue }) => {
+        const state = getState();
+        const token = state.auth.accessToken;
+
+        try {
+            const response = await fetch(`${API_URL}api/cart/products/${productId}`, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Не удалось удалить товар из корзины');
+            }
+            return await response.json();
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
+
 const initialState = {
     products: [],
     totalPrice: 0,
@@ -87,11 +137,37 @@ const cartSlice = createSlice({
             .addCase(addProductToCart.fulfilled, (state, action) => {
                 console.log('addToCart action.payload:', action.payload);
                 state.loadingAdd = false;
-                state.totalPrice = action.payload.totalPrice;
+                state.totalCount = action.payload.totalCount;
                 state.products.push(action.payload.product);
             })
             .addCase(addProductToCart.rejected, (state, action) => {
                 state.loadingAdd = false;
+                state.error = action.payload;
+            })
+            .addCase(updateProductToCart.pending, (state) => {
+                state.loadingUpdate = true;
+            })
+            .addCase(updateProductToCart.fulfilled, (state, action) => {
+                console.log('updateProductToCart action.payload:', action.payload);
+                state.loadingUpdate = false;
+                // state.products.map(action.payload.product);
+            })
+            .addCase(updateProductToCart.rejected, (state, action) => {
+                state.loadingUpdate = false;
+                state.error = action.payload;
+            })
+            .addCase(removeProductFromCart.pending, (state) => {
+                state.loadingRemove = true;
+            })
+            .addCase(removeProductFromCart.fulfilled, (state, action) => {
+                state.loadingRemove = false;
+                state.products = state.products.filter(
+                    item => item.id !== action.payload.id
+                );
+                state.totalCount -= action.payload.totalCount;
+            })
+            .addCase(removeProductFromCart.rejected, (state, action) => {
+                state.loadingRemove = false;
                 state.error = action.payload;
             })
     },
