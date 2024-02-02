@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProduct } from '../../store/product/product.slice';
 import { Slider } from '../Slider/Slider';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
+import { AddCartButton } from '../AddCartButton/AddCartButton';
 
 
 export const Card = () => {
@@ -55,7 +56,7 @@ export const Card = () => {
                             </table>
                         </div>
                         <div className={s.btns}>
-                            <button className={s.btn} type="button">В корзину</button>
+                            <AddCartButton className={s.btn} id={data.id} />
                             <FavoriteButton className={s.like} id={data.id} />
                         </div>
                     </div>

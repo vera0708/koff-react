@@ -72,9 +72,9 @@ const cartSlice = createSlice({
             .addCase(fetchCart.fulfilled, (state, action) => {
                 console.log('fetchCart action.payload:', action.payload);
                 state.loadingFetch = false;
-                state.products = [];
-                state.totalPrice = 0;
-                state.totalCount = 0;
+                state.products = action.payload.products;
+                state.totalPrice = action.payload.totalPrice;
+                state.totalCount = action.payload.totalCount;
             })
             .addCase(fetchCart.rejected, (state, action) => {
                 state.loadingFetch = false;
