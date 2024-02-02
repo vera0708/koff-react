@@ -10,7 +10,7 @@ export const fetchCart = createAsyncThunk(
         try {
             const response = await fetch(`${API_URL}api/cart`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    Authorization: `Bearer ${token}`,
                 }
             })
 
@@ -34,7 +34,8 @@ export const addProductToCart = createAsyncThunk(
             const response = await fetch(`${API_URL}api/cart/products`, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(productData),
             });
@@ -86,8 +87,8 @@ const cartSlice = createSlice({
             .addCase(addProductToCart.fulfilled, (state, action) => {
                 console.log('addToCart action.payload:', action.payload);
                 state.loadingAdd = false;
-                //     state.loadingUpdate = true;
-                //     state.loadingRemove = true;
+                state.totalPrice = action.payload.totalPrice;
+                state.products.push(action.payload.product);
             })
             .addCase(addProductToCart.rejected, (state, action) => {
                 state.loadingAdd = false;
