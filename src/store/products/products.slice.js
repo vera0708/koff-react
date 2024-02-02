@@ -21,7 +21,7 @@ export const fetchProducts = createAsyncThunk(
         const response = await fetch(
             `${API_URL}api/products?${queryParams}`, {
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
             }
         })
 
