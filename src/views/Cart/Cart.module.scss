@@ -47,3 +47,25 @@
   text-align: center;
   font-size: 26px;
 }
+
+.link {
+  border-radius: 4px;
+
+  &:hover,
+  &:active {
+    color: #780096;
+  }
+
+  &:focus-visible {
+    color: #780096;
+    outline-color: #780096;
+  }
+}
+
+.text {
+  transform: scale(0);
+
+  @media (min-width: 580px) {
+    transform: scale(1);
+  }
+}

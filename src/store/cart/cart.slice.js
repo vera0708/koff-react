@@ -150,7 +150,12 @@ const cartSlice = createSlice({
             .addCase(updateProductToCart.fulfilled, (state, action) => {
                 console.log('updateProductToCart action.payload:', action.payload);
                 state.loadingUpdate = false;
-                // state.products.map(action.payload.product);
+                state.products = state.products.map((item) => {
+                    if (item.id === action.payload.productCart.productId) {
+                        item.quantity = action.payload.productCart.quantity
+                    }
+                    return item;
+                });
             })
             .addCase(updateProductToCart.rejected, (state, action) => {
                 state.loadingUpdate = false;
