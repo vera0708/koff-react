@@ -135,10 +135,14 @@ const cartSlice = createSlice({
                 state.loadingAdd = true;
             })
             .addCase(addProductToCart.fulfilled, (state, action) => {
-                console.log('addToCart action.payload:', action.payload);
                 state.loadingAdd = false;
                 state.totalCount = action.payload.totalCount;
-                state.products.push(action.payload.product);
+                state.products.push({ ...action.payload.product, quantity: action.payload.productCart.quantity });
+                state.totalPrice = state.products.reduce(
+                    (acc, item) =>
+                        item.price * item.quantity + acc,
+                    0,
+                );
             })
             .addCase(addProductToCart.rejected, (state, action) => {
                 state.loadingAdd = false;
@@ -148,7 +152,7 @@ const cartSlice = createSlice({
                 state.loadingUpdate = true;
             })
             .addCase(updateProductToCart.fulfilled, (state, action) => {
-                console.log('updateProductToCart action.payload:', action.payload);
+                // state.totalPrice = 
                 state.loadingUpdate = false;
                 state.products = state.products.map((item) => {
                     if (item.id === action.payload.productCart.productId) {
@@ -156,6 +160,11 @@ const cartSlice = createSlice({
                     }
                     return item;
                 });
+                state.totalPrice = state.products.reduce(
+                    (acc, item) =>
+                        item.price * item.quantity + acc,
+                    0,
+                );
             })
             .addCase(updateProductToCart.rejected, (state, action) => {
                 state.loadingUpdate = false;
@@ -169,7 +178,12 @@ const cartSlice = createSlice({
                 state.products = state.products.filter(
                     item => item.id !== action.payload.id
                 );
-                state.totalCount -= action.payload.totalCount;
+                state.totalCount = action.payload.totalCount;
+                state.totalPrice = state.products.reduce(
+                    (acc, item) =>
+                        item.price * item.quantity + acc,
+                    0,
+                );
             })
             .addCase(removeProductFromCart.rejected, (state, action) => {
                 state.loadingRemove = false;
