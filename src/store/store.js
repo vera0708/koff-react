@@ -6,6 +6,7 @@ import productReducer from "./product/product.slice";
 import { apiTokenErrorMiddleware } from "./middleware";
 import favoriteReducer from "./favorite/favorite";
 import cartReducer from "./cart/cart.slice";
+import formCartReducer from "./formCard/formCard.slice";
 
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         product: productReducer,
         favorite: favoriteReducer,
         cart: cartReducer,
+        formCart: formCartReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiTokenErrorMiddleware)

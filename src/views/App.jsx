@@ -87,6 +87,18 @@ const router = createBrowserRouter([
       </>
     ),
   },
+  {
+    path: '/order/:orderId',
+    element: (
+      <>
+        <Header />
+        <main>
+          <Order />
+        </main>
+        <Footer />
+      </>
+    ),
+  },
 ])
 
 const App = () => {
