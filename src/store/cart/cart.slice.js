@@ -12,7 +12,7 @@ export const fetchCart = createAsyncThunk(
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
-            })
+            });
 
             if (!response.ok) {
                 throw new Error('Не удалось загрузить корзину товаров');

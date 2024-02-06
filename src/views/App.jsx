@@ -8,6 +8,7 @@ import { Card } from '../componenets/Card/Card';
 import { Catalog } from './Catalog/Catalog';
 import { Goods } from './Goods/Goods';
 import { Cart } from './Cart/Cart';
+import { Order } from '../componenets/Order/Order';
 
 const router = createBrowserRouter([
   {
