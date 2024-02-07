@@ -7,7 +7,6 @@ import { fetchCart } from '../../store/cart/cart.slice';
 export const Navigation = () => {
     const dispatch = useDispatch();
     const product = useSelector(state => state.cart.products);
-    console.log('product:  ', product);
 
     useEffect(() => {
         dispatch(fetchCart());

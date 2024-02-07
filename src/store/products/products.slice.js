@@ -16,7 +16,7 @@ export const fetchProducts = createAsyncThunk(
                 }
             }
         }
-        console.log(queryParams + '');
+        // console.log(queryParams + '');
 
         const response = await fetch(
             `${API_URL}api/products?${queryParams}`, {
